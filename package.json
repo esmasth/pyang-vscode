@@ -1,0 +1,122 @@
+{
+    "name": "pyang",
+    "displayName": "pyang",
+    "version": "0.1.0",
+    "publisher": "sid-sharma",
+    "description": "YANG Language Support using pyang",
+    "author": {
+        "name": "Siddharth Sharma",
+        "email": "siddharth.sharma@ericsson.com"
+    },
+    "categories": [
+        "Programming Languages",
+        "Linters",
+        "Formatters"
+    ],
+    "pricing": "Free",
+    "engines": {
+        "vscode": "^1.88.0"
+    },
+    "license": "MIT",
+    "activationEvents": [],
+    "main": "./dist/extension",
+    "contributes": {
+        "languages": [
+            {
+                "id": "yang",
+                "aliases": [
+                    "YANG",
+                    "yang"
+                ],
+                "extensions": [
+                    ".yang"
+                ],
+                "configuration": "./yang.language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "yang",
+                "scopeName": "source.yang",
+                "path": "./syntaxes/yang.tmLanguage.json"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "pyang",
+            "properties": {
+                "pyang.cli.args": {
+                    "scope": "resource",
+                    "type": "string",
+                    "default": "--lint --strict --canonical --max-line-length=120 --max-identifier-length=64",
+                    "markdownDescription": "Extra `pyang` CLI arguments, above `--lsp --no-env-path` (which are already provided).\n\nThis allows for tuning of LSP server defaults, providing search paths, and provisioning of `pyang` plugins, for example."
+                },
+                "pyang.trace.server": {
+                    "scope": "resource",
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "messages",
+                        "verbose"
+                    ],
+                    "default": "off",
+                    "description": "LSP trace level."
+                },
+                "pyang.debug.server.enable": {
+                    "scope": "machine",
+                    "type": "boolean",
+                    "default": false,
+                    "description": "LSP is used via TCP socket, instead of stdio."
+                },
+                "pyang.debug.server.host": {
+                    "scope": "machine",
+                    "type": "string",
+                    "default": "127.0.0.1",
+                    "description": "LSP Server Host, when LSP is used via TCP socket."
+                },
+                "pyang.debug.server.port": {
+                    "scope": "machine",
+                    "type": "number",
+                    "default": 2087,
+                    "description": "LSP Server Port, when LSP is used via TCP socket."
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@types/vscode": "^1.89.0",
+        "vscode-languageclient": "^7.0.0"
+    },
+    "scripts": {
+        "compile": "npm run check-types && node esbuild.js",
+        "check-types": "tsc --noEmit",
+        "watch": "npm-run-all -p watch:*",
+        "watch:esbuild": "node esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+        "vscode:prepublish": "tsc",
+        "package": "npm run check-types && node esbuild.js --production",
+        "build": "vsce package",
+        "test": "vscode-test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esmasth/pyang-vscode.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esmasth/pyang-vscode/issues"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.6.0",
+        "@types/node": "^20.14.2",
+        "@typescript-eslint/parser": "^5.0.1",
+        "@vscode/test-cli": "^0.0.9",
+        "@vscode/test-electron": "^2.4.0",
+        "esbuild": "^0.21.5",
+        "eslint": "^8.57.0",
+        "globals": "^15.8.0",
+        "prettier": "^3.1.0",
+        "prettier-eslint": "^16.1.2",
+        "typescript": "^4.4.4",
+        "typescript-eslint": "^7.15.0"
+    }
+}

@@ -1,0 +1,57 @@
+module test-b {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:test-b";
+  prefix testb;
+
+  import test-a {
+    prefix testa;
+  }
+
+  description
+    "Module Test B";
+
+  augment "/testa:test-alpha" {
+    description
+      "Augmenting Test Alpha";
+    leaf test-b-augmentation {
+      type string;
+      description
+        "Test B Module Augmented Leaf";
+    }
+  }
+
+  container test-container {
+    uses testa:test-grouping;
+  }
+  container test-container2 {
+    uses testa:test-grouping;
+  }
+  list test-list {
+    key "test-grouping-leaf test-leaf2";
+    unique "test-grouping-leaf";
+    unique "test-leaf3";
+    description
+      "Test List";
+    uses testa:test-grouping;
+    leaf test-leaf2 {
+      type string;
+      default "something";
+    }
+    leaf test-leaf3 {
+      type string;
+      default "something else";
+      description
+        "Test Leaf 3";
+    }
+    container test-container3 {
+      description
+        "Test Container 3";
+      leaf test-cont3-leaf {
+        type leafref {
+          path "/testa:test-alpha/testa:test-leaf";
+        }
+        description "";
+      }
+    }
+  }
+}
