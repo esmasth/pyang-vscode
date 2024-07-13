@@ -1,7 +1,7 @@
 {
     "name": "pyang",
     "displayName": "pyang",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "publisher": "sid-sharma",
     "description": "YANG Language Support using pyang",
     "author": {
@@ -15,10 +15,13 @@
     ],
     "pricing": "Free",
     "engines": {
-        "vscode": "^1.88.0"
+        "vscode": "^1.65.0"
     },
     "license": "MIT",
-    "activationEvents": [],
+    "activationEvents": [
+        "onLanguage:yang",
+        "onCommand:pyang.client.restart"
+    ],
     "main": "./dist/extension",
     "contributes": {
         "languages": [
@@ -39,6 +42,13 @@
                 "language": "yang",
                 "scopeName": "source.yang",
                 "path": "./syntaxes/yang.tmLanguage.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "pyang.client.restart",
+                "title": "Restart Language Server",
+                "category": "pyang"
             }
         ],
         "configuration": {

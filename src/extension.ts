@@ -12,24 +12,40 @@ import {
 } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
+const restartCmd = 'pyang.client.restart'
 const config = vscode.workspace.getConfiguration('pyang');
 const debug = config.get<boolean>('debug.server.enable', false)
-const debug_host = config.get<string>('debug.server.host', "127.0.0.1")
-const debug_port = config.get<number>('debug.server.port', 2087)
-const extra_args = config.get<string>('cli.args', '')
+const debugHost = config.get<string>('debug.server.host', "127.0.0.1")
+const debugPort = config.get<number>('debug.server.port', 2087)
+const extraArgs = config.get<string>('cli.args', '')
 
 export function activate(context: vscode.ExtensionContext) {
-    let clientOptions: LanguageClientOptions = {
+    const clientOptions: LanguageClientOptions = {
         documentSelector: ['yang'],
+        synchronize: {
+            fileEvents: vscode.workspace.createFileSystemWatcher('**/*.yang')
+        }
     };
     const clientId = { id: 'pyang', name: 'pyang Language Server' };
     client = debug
         ? getSocketLanguageClient(clientId, clientOptions)
-        : getStdioLanguageClient(clientId, clientOptions, context);
+        : getStdioLanguageClient(clientId, clientOptions);
+
     client.start();
-    vscode.window.showInformationMessage(debug
-        ? 'pyang: LSP socket mode'
-        : 'pyang: LSP stdio mode');
+
+    client.onReady().then(() => {
+        vscode.window.showInformationMessage(debug
+            ? 'pyang: LSP socket mode'
+            : 'pyang: LSP stdio mode');
+
+    });
+
+    const restartCmdHandler = async () => {
+        await client.stop();
+        client.start();
+    };
+
+    context.subscriptions.push(vscode.commands.registerCommand(restartCmd, restartCmdHandler));
 }
 
 export function deactivate(): Thenable<void> | undefined {
@@ -42,14 +58,13 @@ export function deactivate(): Thenable<void> | undefined {
 function getStdioLanguageClient(
     clientId: { id: string, name: string },
     clientOptions: LanguageClientOptions,
-    context: vscode.ExtensionContext
 ): LanguageClient {
     const lsp_command = 'pyang';
     let lsp_args = [
         '--lsp',
         '--no-env-path',
     ];
-    lsp_args = lsp_args.concat(extra_args.split(' '))
+    lsp_args = lsp_args.concat(extraArgs.split(' '))
     const serverOptions: ServerOptions = {
         run: {
             command: lsp_command,
@@ -73,13 +88,13 @@ function getSocketLanguageClient(
     clientId: { id: string, name: string },
     clientOptions: LanguageClientOptions,
 ): LanguageClient {
-    let connectionInfo = {
-        port: debug_port,
-        host: debug_host
+    const connectionInfo = {
+        port: debugPort,
+        host: debugHost
     };
-    let serverOptions: ServerOptions = () => {
-        let socket = net.connect(connectionInfo);
-        let result: StreamInfo = {
+    const serverOptions: ServerOptions = () => {
+        const socket = net.connect(connectionInfo);
+        const result: StreamInfo = {
             writer: socket,
             reader: socket
         };

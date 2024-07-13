@@ -27,13 +27,14 @@ by the extension, except pull diagnostics and commands.
 
 See `pyang` documentation corresponding to installation for expected features.
 
-See: [Programmatic Language Features][programmatic], [Language Server Extension Guide][lseg]
+See: [Programmatic Language Features][programmatic],
+     [Language Server Extension Guide][lseg]
 
 ## Requirements
 
 The extension requires a `pyang` version installation that supports LSP. At the
-time of writing, only a work in progress `pyang` supports `--lsp` argument,
-which is used to execute it as an LSP server.
+time of writing, only a work in progress `pyang` supports `--lsp --no-env-path`
+arguments, which are used to execute it as an LSP server.
 
 ## Extension Settings
 
@@ -52,22 +53,34 @@ This extension contributes the following settings:
 * `pyang.debug.server.port`
   > LSP Server Port, when LSP is used via TCP socket.
 
+## Extension Commands
+
+This extension contributes the following commands:
+
+* `pyang.client.restart`
+  > `pyang: Restart Language Server` restarts the language client and in turn
+  reinstantiates the language server. When `pyang.debug.server.enable` is set,
+  it merely reinitiates the TCP connection and hence TCP server should already
+  be initiated.
+
 ## Known Issues
 
 Missing `pyang` or older installations that do not meet requirements are not
 handled gracefully.
 
-Change of configuration requires reload of editor for application.
+Change of some settings e.g., CLI arguments, requires reload of manual reload of
+the editor. `pyang: Restart Language Server` command reuses the settings from
+the last startup.
 
 For issues pertaining to the language server, please refer to documentation for
 `pyang`.
 
-## Unknown Issues
-
-The extension has only been verified with VS Code, hence issues may exist with
-other VS Code compatible editors/IDE.
-
 ## Release Notes
+
+### 0.2.0
+
+* Added support for older VS Code >= 1.65.0
+* Added command `pyang: Restart Language Server`
 
 ### 0.1.0
 
