@@ -9,10 +9,13 @@ import {
     LanguageClientOptions,
     ServerOptions,
     StreamInfo,
+    Position,
+    Location,
 } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
 const restartCmd = 'pyang.client.restart'
+const showReferencesCmd = 'pyang.show.references'
 const config = vscode.workspace.getConfiguration('pyang');
 const debug = config.get<boolean>('debug.server.enable', false)
 const debugHost = config.get<string>('debug.server.host', "127.0.0.1")
@@ -46,6 +49,18 @@ export function activate(context: vscode.ExtensionContext) {
     };
 
     context.subscriptions.push(vscode.commands.registerCommand(restartCmd, restartCmdHandler));
+
+    vscode.commands.registerCommand(showReferencesCmd, (uri: string, position: Position, locations: Location[]) => {
+        // vscode.window.showInformationMessage(
+        //     vscode.Uri.parse(uri).toString() +
+        //      ' ' + position.line.toString() +
+        //      ' ' + position.character.toString()
+        // );
+        vscode.commands.executeCommand('editor.action.showReferences',
+            vscode.Uri.parse(uri),
+            client.protocol2CodeConverter.asPosition(position),
+            locations.map(client.protocol2CodeConverter.asLocation));
+    })
 }
 
 export function deactivate(): Thenable<void> | undefined {

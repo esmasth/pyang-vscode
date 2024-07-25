@@ -23,7 +23,8 @@ See: [Syntax Highlight][grammars], [Language Configuration][languages]
 ### Language Server Based
 
 `pyang` provides [LSP][lsp] based features for YANG, all of which are supported
-by the extension, except pull diagnostics and commands.
+by the extension, except pull diagnostics since it is not automatically
+triggered.
 
 See `pyang` documentation corresponding to installation for expected features.
 
@@ -76,6 +77,10 @@ For issues pertaining to the language server, please refer to documentation for
 `pyang`.
 
 ## Release Notes
+
+### 0.3.0
+
+* Added support for pyang's "References" Code Lens command
 
 ### 0.2.0
 

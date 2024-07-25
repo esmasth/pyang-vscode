@@ -8,10 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0]
+
+## Added
+
+- Support for Code Lens command `pyang.show.references`
+
+## [0.2.0]
+
+## Added
+
+- Support for older VS Code >= 1.65.0
+- `Restart Language Server` Command
+
+## [0.1.0]
+
 ### Added
 
 - `syntaxes/yang.tmLanguage.json` for YANG [syntax highlight][syntax-highlight].
-- `lanugage-configuration.json` for YANG [language configuration][language-configuration].
+- `yang.lanugage-configuration.json` for YANG [language configuration][language-configuration].
 - Integration for YANG [language server][language-server-extension] based on
   [`pyang`][pyang], with following configurability
   - CLI arguments to `pyang`
@@ -24,3 +39,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [language-server-extension]: https://code.visualstudio.com/api/language-extensions/language-server-extension-guide
 
 [pyang]: https://github.com/mbj4668/pyang
+
+<!-- markdownlint-disable-file MD024 -->
