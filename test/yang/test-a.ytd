@@ -1,0 +1,30 @@
+// Test
+module: test-a
+  +--rw test-alpha!
+     +--rw test-grouping-leaf?        uint8
+     +--rw test-grouping-leaf-list*   uint8
+     +--ro test-leaf                  string
+     +--rw (test-choice)?
+        +--:(test-case-a)
+        |  +--rw test-case-a-leaf?    -> /test-alpha/test-leaf
+        x--:(test-case-b)
+        |  +--rw test-case-b-leaf?    string
+        +--:(test-case-c)
+           +--rw test-case-c-leaf?    -> /test-alpha/test-grouping-leaf
+           +--rw test-case-c-leaf*    string {test-feature}?
+
+  rpcs:
+    +---x test-apple-de-Finibus-Bonorum-et-Malorum-de-Finibus-Bonorum-et-Malorum
+       +---w input
+          +---w leaf-name?                 string
+          +---w test-grouping-leaf?        uint8
+          +---w test-grouping-leaf-list*   uint8
+
+  // Test Comment
+  notifications:
+    +---n test-aleph {test-feature}?
+    |  +--ro test-grouping-leaf?        uint8
+    |  +--ro test-grouping-leaf-list*   uint8
+    o---n test-aleph
+       +--ro test-grouping-leaf?        uint8
+       +--ro test-grouping-leaf-list*   uint8

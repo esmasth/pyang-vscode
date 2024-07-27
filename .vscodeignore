@@ -9,3 +9,5 @@ src/
 tsconfig.json
 webpack.config.js
 esbuild.js
+eslint.config.mjs
+test/

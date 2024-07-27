@@ -1,0 +1,84 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "yangtree",
+    "scopeName": "source.yangtree",
+    "fileTypes": [
+        "yangtree",
+        "ytd"
+    ],
+    "firstLineMatch": "^(module|submodule):\\s[a-zA-Z][a-zA-Z0-9-]*$",
+    "patterns": [
+        {
+            "name": "comment.line.double-slash.yangtree",
+            "match": "//.*$"
+        },
+        {
+            "name": "markup.heading.yangtree",
+            "match": "(^(module|submodule)|(?<=^\\s\\s)rpcs|(?<=^\\s\\s)notifications)(?=:)"
+        },
+        {
+            "name": "entity.name.class.modsubmod.yangtree",
+            "match": "(?<=^(module|submodule):\\s)([a-zA-Z][a-zA-Z0-9-]+)"
+        },
+        {
+            "name": "invalid.deprecated.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*)([xo])(?=--.*$)"
+        },
+        {
+            "name": "storage.modifier.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--)(ro|rw|-w)(?=\\s.*$)"
+        },
+        {
+            "name": "keyword.other.rpc.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--)(-x)(?=\\s.*$)"
+        },
+        {
+            "name": "keyword.other.notification.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--)(-n)(?=\\s.*$)"
+        },
+        {
+            "name": "entity.name.tag.list.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--.*)(\\*)"
+        },
+        {
+            "name": "entity.name.tag.optional.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--.*)(\\?)"
+        },
+        {
+            "name": "entity.name.tag.presence.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--.*)(\\!)"
+        },
+        {
+            "name": "keyword.control.input-output.yangtree",
+            "match": "(?<=^\\s{7}[\\+xo]--(ro|-w)\\s)(input|output)(?=$)"
+        },
+        {
+            "name": "keyword.control.choice.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--((ro|rw|-w|-x|-n)\\s)?)(:?\\([a-zA-Z][a-zA-Z0-9-]+\\))(?=.*$)"
+        },
+        {
+            "name": "support.variable.yangtree",
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(ro|rw|-w)\\s)([a-zA-Z][a-zA-Z0-9-]*)(?=[\\*?\\??]?\\s*.*$|$)"
+        },
+        {
+            "name": "entity.name.function.rpc.yangtree",
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(-x)\\s)([a-zA-Z][a-zA-Z0-9-]+)(?=[\\*?\\??]?\\s*.*$|$)"
+        },
+        {
+            "name": "entity.name.function.notification.yangtree",
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(-n)\\s)([a-zA-Z][a-zA-Z0-9-]+)(?=[\\*?\\??]?\\s*.*$|$)"
+        },
+        {
+            "name": "entity.other.attribute-name.list-key.yangtree",
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--.*\\s\\[)([a-zA-Z][a-zA-Z0-9-]*(\\s[a-zA-Z][a-zA-Z0-9-]*)*)(?=\\])"
+        },
+        {
+            "name": "entity.name.tag.if-feature.yangtree",
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--.*\\{)(([a-zA-Z][a-zA-Z0-9-]*:)?[a-zA-Z][a-zA-Z0-9-]*((\\s(and|or)\\s|,)([a-zA-Z][a-zA-Z0-9-]*:)?[a-zA-Z][a-zA-Z0-9-]*)*)"
+        },
+        {
+            "name": "entity.name.type.yangtree",
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(ro|rw|-w|-x|-n)\\s[a-zA-Z][a-zA-Z0-9-]*[\\*\\?]?\\s*)(binary|bits|boolean|decimal64|empty|enumeration|identityref|instance-identifier|int8|int16|int32|int64|->|string|uint8|uint16|uint32|uint64|union|[a-zA-Z][a-zA-Z0-9-:_]*)(?=\\s\\{[^\\}]*\\}\\?$|\\s.*$|$)"
+        }
+    ]
+}

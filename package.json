@@ -1,7 +1,7 @@
 {
     "name": "pyang",
     "displayName": "pyang",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "publisher": "sid-sharma",
     "description": "YANG Language Support using pyang",
     "author": {
@@ -35,6 +35,18 @@
                     ".yang"
                 ],
                 "configuration": "./yang.language-configuration.json"
+            },
+            {
+                "id": "yangtree",
+                "aliases": [
+                    "YANG Tree Diagram",
+                    "yangtree"
+                ],
+                "extensions": [
+                    ".yangtree",
+                    ".ytd"
+                ],
+                "configuration": "./yangtree.language-configuration.json"
             }
         ],
         "grammars": [
@@ -42,6 +54,11 @@
                 "language": "yang",
                 "scopeName": "source.yang",
                 "path": "./syntaxes/yang.tmLanguage.json"
+            },
+            {
+                "language": "yangtree",
+                "scopeName": "source.yangtree",
+                "path": "./syntaxes/yangtree.tmLanguage.json"
             }
         ],
         "commands": [
@@ -58,8 +75,8 @@
                 "pyang.cli.args": {
                     "scope": "resource",
                     "type": "string",
-                    "default": "--lint --strict --canonical --max-line-length=120 --max-identifier-length=64",
-                    "markdownDescription": "Extra `pyang` CLI arguments, above `--lsp --no-env-path` (which are already provided).\n\nThis allows for tuning of LSP server defaults, providing search paths, and provisioning of `pyang` plugins, for example."
+                    "default": "",
+                    "markdownDescription": "Extra `pyang` CLI arguments, above already provided `--verbose --lsp --no-env-path`.\n\nThis allows for tuning of LSP server defaults, providing search paths, and provisioning of `pyang` plugins, for example.\n\n**NOTE**: Takes effect at editor reload."
                 },
                 "pyang.trace.server": {
                     "scope": "resource",

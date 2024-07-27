@@ -78,6 +78,14 @@ For issues pertaining to the language server, please refer to documentation for
 
 ## Release Notes
 
+### 0.4.0
+
+* `pyang.cli.args` configuration is now empty by default
+* `pyang` startup arguments now include `--verbose`, in addition to `--lsp` and
+  `--no-env-path` arguments earlier
+* Added support for YANG Tree Diagram syntax highlighting. `.yangtree` and
+  `.ytd` file extensions are registered as YANG Tree Diagram by default.
+
 ### 0.3.0
 
 * Added support for pyang's "References" Code Lens command

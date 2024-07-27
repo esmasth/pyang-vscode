@@ -8,15 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0]
+
+### Added
+
+- Support for YANG Tree Diagram syntax highlighting
+
+### Changed
+
+- `--verbose` is added to `pyang` arguments
+- Default `pyang.cli.args` configuration to be empty
+
 ## [0.3.0]
 
-## Added
+### Added
 
 - Support for Code Lens command `pyang.show.references`
 
 ## [0.2.0]
 
-## Added
+### Added
 
 - Support for older VS Code >= 1.65.0
 - `Restart Language Server` Command

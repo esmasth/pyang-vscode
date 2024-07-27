@@ -51,11 +51,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand(restartCmd, restartCmdHandler));
 
     vscode.commands.registerCommand(showReferencesCmd, (uri: string, position: Position, locations: Location[]) => {
-        // vscode.window.showInformationMessage(
-        //     vscode.Uri.parse(uri).toString() +
-        //      ' ' + position.line.toString() +
-        //      ' ' + position.character.toString()
-        // );
         vscode.commands.executeCommand('editor.action.showReferences',
             vscode.Uri.parse(uri),
             client.protocol2CodeConverter.asPosition(position),
@@ -76,6 +71,7 @@ function getStdioLanguageClient(
 ): LanguageClient {
     const lsp_command = 'pyang';
     let lsp_args = [
+        '--verbose',
         '--lsp',
         '--no-env-path',
     ];
