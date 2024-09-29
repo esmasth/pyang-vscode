@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0]
+
+### Added
+
+- Support for YANG Tree Diagram generation
+- Support for PlantUML Diagram source generation
+- YANG Tree Diagram file icon
+- Extension icon
+
 ## [0.4.0]
 
 ### Added

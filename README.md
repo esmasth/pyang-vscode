@@ -64,6 +64,16 @@ This extension contributes the following commands:
   it merely reinitiates the TCP connection and hence TCP server should already
   be initiated.
 
+* `pyang.trigger.tree.diagram`
+  > `pyang: Generate YANG Tree Diagram` generates the YANG Tree diagram source
+  text corresponding to the YANG file in the active editor, and brings the
+  generated file into focus.
+
+* `pyang.trigger.puml.diagram`
+  > `pyang: Generate PlantUML Diagram` generates the PlantUML diagram source
+  text corresponding to the YANG file in the active editor, and brings the
+  generated file into focus.
+
 ## Known Issues
 
 Missing `pyang` or older installations that do not meet requirements are not

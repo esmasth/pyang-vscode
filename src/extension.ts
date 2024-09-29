@@ -16,6 +16,10 @@ import {
 let client: LanguageClient;
 const restartCmd = 'pyang.client.restart'
 const showReferencesCmd = 'pyang.show.references'
+const triggerTreeDiagramCmd = 'pyang.trigger.tree.diagram'
+const triggerPumlDiagramCmd = 'pyang.trigger.puml.diagram'
+const generateTreeDiagramCmd = 'pyang.generate.tree.diagram'
+const generatePumlDiagramCmd = 'pyang.generate.puml.diagram'
 const config = vscode.workspace.getConfiguration('pyang');
 const debug = config.get<boolean>('debug.server.enable', false)
 const debugHost = config.get<string>('debug.server.host', "127.0.0.1")
@@ -43,19 +47,57 @@ export function activate(context: vscode.ExtensionContext) {
 
     });
 
-    const restartCmdHandler = async () => {
-        await client.stop();
-        client.start();
-    };
+    context.subscriptions.push(vscode.commands.registerCommand(restartCmd,
+        async () => {
+            await client.stop();
+            client.start();
+        }
+    ));
 
-    context.subscriptions.push(vscode.commands.registerCommand(restartCmd, restartCmdHandler));
+    context.subscriptions.push(vscode.commands.registerCommand(triggerTreeDiagramCmd,
+        async () => {
+            const command = generateTreeDiagramCmd;
+            const activeEditor = vscode.window.activeTextEditor;
+            if (!activeEditor) {
+                return;
+            }
+            const uri = activeEditor.document.uri.toString();
+            const args = [uri];
 
-    vscode.commands.registerCommand(showReferencesCmd, (uri: string, position: Position, locations: Location[]) => {
-        vscode.commands.executeCommand('editor.action.showReferences',
-            vscode.Uri.parse(uri),
-            client.protocol2CodeConverter.asPosition(position),
-            locations.map(client.protocol2CodeConverter.asLocation));
-    })
+            try {
+                await vscode.commands.executeCommand(command, ...args);
+            } catch (error) {
+                vscode.window.showErrorMessage(`Error executing command: ${error}`);
+            }
+        }
+    ));
+
+    context.subscriptions.push(vscode.commands.registerCommand(triggerPumlDiagramCmd,
+        async () => {
+            const command = generatePumlDiagramCmd;
+            const activeEditor = vscode.window.activeTextEditor;
+            if (!activeEditor) {
+                return;
+            }
+            const uri = activeEditor.document.uri.toString();
+            const args = [uri];
+
+            try {
+                await vscode.commands.executeCommand(command, ...args);
+            } catch (error) {
+                vscode.window.showErrorMessage(`Error executing command: ${error}`);
+            }
+        }
+    ));
+
+    context.subscriptions.push(vscode.commands.registerCommand(showReferencesCmd,
+        async (uri: string, position: Position, locations: Location[]) => {
+            await vscode.commands.executeCommand('editor.action.showReferences',
+                vscode.Uri.parse(uri),
+                client.protocol2CodeConverter.asPosition(position),
+                locations.map(client.protocol2CodeConverter.asLocation));
+        }
+    ));
 }
 
 export function deactivate(): Thenable<void> | undefined {

@@ -1,7 +1,7 @@
 {
     "name": "pyang",
     "displayName": "pyang",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "publisher": "sid-sharma",
     "description": "YANG Language Support using pyang",
     "author": {
@@ -11,7 +11,8 @@
     "categories": [
         "Programming Languages",
         "Linters",
-        "Formatters"
+        "Formatters",
+        "Visualization"
     ],
     "pricing": "Free",
     "engines": {
@@ -46,6 +47,10 @@
                     ".yangtree",
                     ".ytd"
                 ],
+                "icon": {
+                    "dark": "./resources/yangtree.svg",
+                    "light": "./resources/yangtree.svg"
+                },
                 "configuration": "./yangtree.language-configuration.json"
             }
         ],
@@ -65,6 +70,16 @@
             {
                 "command": "pyang.client.restart",
                 "title": "Restart Language Server",
+                "category": "pyang"
+            },
+            {
+                "command": "pyang.trigger.tree.diagram",
+                "title": "Generate YANG Tree Diagram",
+                "category": "pyang"
+            },
+            {
+                "command": "pyang.trigger.puml.diagram",
+                "title": "Generate PlantUML Diagram",
                 "category": "pyang"
             }
         ],
@@ -114,6 +129,7 @@
         "@types/vscode": "^1.89.0",
         "vscode-languageclient": "^7.0.0"
     },
+    "icon": "resources/pyang.png",
     "scripts": {
         "compile": "npm run check-types && node esbuild.js",
         "check-types": "tsc --noEmit",
