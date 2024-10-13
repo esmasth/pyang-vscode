@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0]
+
+### Added
+
+- Editor context menu items to generate PlantUML and YANG Tree Diagrams
+- Status bar item for associated files
+
+### Changed
+
+- `yangtree` syntax highlighting is fixed to handle prefixes and underscores
+- Debug mode can be enabled per workspace as well, in addition to Remote
+
 ## [0.5.0]
 
 ### Added

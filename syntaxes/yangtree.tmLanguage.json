@@ -54,31 +54,31 @@
         },
         {
             "name": "keyword.control.choice.yangtree",
-            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--((ro|rw|-w|-x|-n)\\s)?)(:?\\([a-zA-Z][a-zA-Z0-9-]+\\))(?=.*$)"
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--((ro|rw|-w|-x|-n)\\s)?)(:?\\([a-zA-Z][a-zA-Z0-9-_]+\\))(?=.*$)"
         },
         {
             "name": "support.variable.yangtree",
-            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(ro|rw|-w)\\s)([a-zA-Z][a-zA-Z0-9-]*)(?=[\\*?\\??]?\\s*.*$|$)"
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(ro|rw|-w)\\s)(([a-zA-Z][a-zA-Z0-9-_]*:)?[a-zA-Z][a-zA-Z0-9-_]*)(?=[\\*?\\??]?\\s*.*$|$)"
         },
         {
             "name": "entity.name.function.rpc.yangtree",
-            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(-x)\\s)([a-zA-Z][a-zA-Z0-9-]+)(?=[\\*?\\??]?\\s*.*$|$)"
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(-x)\\s)([a-zA-Z][a-zA-Z0-9-_]+)(?=[\\*?\\??]?\\s*.*$|$)"
         },
         {
             "name": "entity.name.function.notification.yangtree",
-            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(-n)\\s)([a-zA-Z][a-zA-Z0-9-]+)(?=[\\*?\\??]?\\s*.*$|$)"
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(-n)\\s)([a-zA-Z][a-zA-Z0-9-_]+)(?=[\\*?\\??]?\\s*.*$|$)"
         },
         {
             "name": "entity.other.attribute-name.list-key.yangtree",
-            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--.*\\s\\[)([a-zA-Z][a-zA-Z0-9-]*(\\s[a-zA-Z][a-zA-Z0-9-]*)*)(?=\\])"
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--.*\\s\\[)([a-zA-Z][a-zA-Z0-9-_]*(\\s[a-zA-Z][a-zA-Z0-9-_]*)*)(?=\\])"
         },
         {
             "name": "entity.name.tag.if-feature.yangtree",
-            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--.*\\{)(([a-zA-Z][a-zA-Z0-9-]*:)?[a-zA-Z][a-zA-Z0-9-]*((\\s(and|or)\\s|,)([a-zA-Z][a-zA-Z0-9-]*:)?[a-zA-Z][a-zA-Z0-9-]*)*)"
+            "match": "(?<=^\\s+([\\|\\s\\s])*[\\+xo]--.*\\{)(([a-zA-Z][a-zA-Z0-9-_]*:)?[a-zA-Z][a-zA-Z0-9-_]*((\\s(and|or)\\s|,)([a-zA-Z][a-zA-Z0-9-]*:)?[a-zA-Z][a-zA-Z0-9-]*)*)"
         },
         {
             "name": "entity.name.type.yangtree",
-            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(ro|rw|-w|-x|-n)\\s[a-zA-Z][a-zA-Z0-9-]*[\\*\\?]?\\s*)(binary|bits|boolean|decimal64|empty|enumeration|identityref|instance-identifier|int8|int16|int32|int64|->|string|uint8|uint16|uint32|uint64|union|[a-zA-Z][a-zA-Z0-9-:_]*)(?=\\s\\{[^\\}]*\\}\\?$|\\s.*$|$)"
+            "match": "(?<=^\\s+([\\|\\s])*[\\+xo]--(ro|rw|-w|-x|-n)\\s([a-zA-Z][a-zA-Z0-9-_]*:)?[a-zA-Z][a-zA-Z0-9-_]*[\\*\\?]?\\s*)(binary|bits|boolean|decimal64|empty|enumeration|identityref|instance-identifier|int8|int16|int32|int64|->|string|uint8|uint16|uint32|uint64|union|[a-zA-Z][a-zA-Z0-9-:_]*)(?=\\s\\{[^\\}]*\\}\\?$|\\s.*$|$)"
         }
     ]
 }

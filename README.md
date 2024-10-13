@@ -64,15 +64,15 @@ This extension contributes the following commands:
   it merely reinitiates the TCP connection and hence TCP server should already
   be initiated.
 
-* `pyang.trigger.tree.diagram`
+* `pyang.editor.tree.diagram`
   > `pyang: Generate YANG Tree Diagram` generates the YANG Tree diagram source
   text corresponding to the YANG file in the active editor, and brings the
   generated file into focus.
 
-* `pyang.trigger.puml.diagram`
+* `pyang.editor.puml.diagram`
   > `pyang: Generate PlantUML Diagram` generates the PlantUML diagram source
   text corresponding to the YANG file in the active editor, and brings the
-  generated file into focus.
+  generated diagram via 'jebbs.plantuml' into focus.
 
 ## Known Issues
 
@@ -87,6 +87,21 @@ For issues pertaining to the language server, please refer to documentation for
 `pyang`.
 
 ## Release Notes
+
+### 0.6.0
+
+* Added menu items in editor context to generate PlantUML and YANG Tree Diagrams
+* Improved usability of the PlantUML and YANG Tree Diagram generation.
+  Requires latest version of pyang with LSP support.
+* Improved syntax highlighting of YANG Tree Diagrams
+* Added status bar item `pyang` for editors which are served by the extension.
+
+### 0.5.0
+
+* Extension now has an icon
+* YANG Tree Diagram has a file icon
+* Added command `pyang: Generate PlantUML Diagram`
+* Added command `pyang: Generate YANG Tree Diagram`
 
 ### 0.4.0
 

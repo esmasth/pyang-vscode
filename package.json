@@ -1,7 +1,7 @@
 {
     "name": "pyang",
     "displayName": "pyang",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "publisher": "sid-sharma",
     "description": "YANG Language Support using pyang",
     "author": {
@@ -45,6 +45,7 @@
                 ],
                 "extensions": [
                     ".yangtree",
+                    ".yang.tree",
                     ".ytd"
                 ],
                 "icon": {
@@ -73,16 +74,48 @@
                 "category": "pyang"
             },
             {
-                "command": "pyang.trigger.tree.diagram",
+                "command": "pyang.editor.tree.diagram",
                 "title": "Generate YANG Tree Diagram",
+                "enablement": "editorLangId == yang",
                 "category": "pyang"
             },
             {
-                "command": "pyang.trigger.puml.diagram",
+                "command": "pyang.editor.puml.diagram",
                 "title": "Generate PlantUML Diagram",
+                "enablement": "editorLangId == yang",
                 "category": "pyang"
             }
         ],
+        "keybindings": [
+            {
+                "command": "pyang.editor.tree.diagram",
+                "key": "ctrl+y ctrl+t",
+                "when": "editorFocus && editorLangId == yang",
+                "description": "Generate YANG Tree Diagram",
+                "primary": true
+            },
+            {
+                "command": "pyang.editor.puml.diagram",
+                "key": "ctrl+y ctrl+u",
+                "when": "editorFocus && editorLangId == yang",
+                "description": "Generate PlantUML Diagram",
+                "primary": true
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "pyang.editor.tree.diagram",
+                    "when": "editorLangId == yang",
+                    "group": "pyang"
+                },
+                {
+                    "command": "pyang.editor.puml.diagram",
+                    "when": "editorLangId == yang",
+                    "group": "pyang"
+                }
+            ]
+        },
         "configuration": {
             "type": "object",
             "title": "pyang",
@@ -105,7 +138,7 @@
                     "description": "LSP trace level."
                 },
                 "pyang.debug.server.enable": {
-                    "scope": "machine",
+                    "scope": "machine-overridable",
                     "type": "boolean",
                     "default": false,
                     "description": "LSP is used via TCP socket, instead of stdio."
@@ -125,6 +158,12 @@
             }
         }
     },
+    "extensionKind": [
+        "workspace"
+    ],
+    "extensionDependencies": [
+        "jebbs.plantuml"
+    ],
     "dependencies": {
         "@types/vscode": "^1.89.0",
         "vscode-languageclient": "^7.0.0"
