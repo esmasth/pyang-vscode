@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0]
+
+### Added
+
+- Generic YANG file template snippets for `module` and `submodule`
+- Markdown code fence syntax highlighting for `yang` and `yangtree`
+
+### Changed
+
+- Keybinding for `pyang: Generate YANG Tree Diagram` from `Ctrl+Y T` to `Alt+Y T`
+- Keybinding for `pyang: Generate PlantUML Diagram` from `Ctrl+Y U` to `Alt+Y U`
+
 ## [0.6.0]
 
 ### Added

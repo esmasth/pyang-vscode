@@ -1,7 +1,7 @@
 {
     "name": "pyang",
     "displayName": "pyang",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "publisher": "sid-sharma",
     "description": "YANG Language Support using pyang",
     "author": {
@@ -12,7 +12,14 @@
         "Programming Languages",
         "Linters",
         "Formatters",
-        "Visualization"
+        "Visualization",
+        "Snippets"
+    ],
+    "keywords": [
+        "YANG",
+        "pyang",
+        "markdown-it",
+        "markdown-it-plugin"
     ],
     "pricing": "Free",
     "engines": {
@@ -62,6 +69,26 @@
                 "path": "./syntaxes/yang.tmLanguage.json"
             },
             {
+                "scopeName": "markdown.yang.codeblock",
+                "path": "./syntaxes/yang.codeblock.json",
+                "injectTo": [
+                    "text.html.markdown"
+                ],
+                "embeddedLanguages": {
+                    "meta.embedded.block.yang": "yang"
+                }
+            },
+            {
+                "scopeName": "markdown.yangtree.codeblock",
+                "path": "./syntaxes/yangtree.codeblock.json",
+                "injectTo": [
+                    "text.html.markdown"
+                ],
+                "embeddedLanguages": {
+                    "meta.embedded.block.yangtree": "yangtree"
+                }
+            },
+            {
                 "language": "yangtree",
                 "scopeName": "source.yangtree",
                 "path": "./syntaxes/yangtree.tmLanguage.json"
@@ -89,14 +116,14 @@
         "keybindings": [
             {
                 "command": "pyang.editor.tree.diagram",
-                "key": "ctrl+y ctrl+t",
+                "key": "alt+y t",
                 "when": "editorFocus && editorLangId == yang",
                 "description": "Generate YANG Tree Diagram",
                 "primary": true
             },
             {
                 "command": "pyang.editor.puml.diagram",
-                "key": "ctrl+y ctrl+u",
+                "key": "alt+y u",
                 "when": "editorFocus && editorLangId == yang",
                 "description": "Generate PlantUML Diagram",
                 "primary": true
@@ -156,7 +183,14 @@
                     "description": "LSP Server Port, when LSP is used via TCP socket."
                 }
             }
-        }
+        },
+        "snippets": [
+            {
+                "language": "yang",
+                "path": "./snippets/yang.snippets.json"
+            }
+        ],
+        "markdown.markdownItPlugins": true
     },
     "extensionKind": [
         "workspace"
@@ -166,6 +200,8 @@
     ],
     "dependencies": {
         "@types/vscode": "^1.89.0",
+        "markdown-it": "^14.1.0",
+        "markdown-it-highlightjs": "^4.2.0",
         "vscode-languageclient": "^7.0.0"
     },
     "icon": "resources/pyang.png",
@@ -189,6 +225,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.6.0",
+        "@types/markdown-it": "^14.1.2",
         "@types/node": "^20.14.2",
         "@typescript-eslint/parser": "^5.0.1",
         "@vscode/test-cli": "^0.0.9",

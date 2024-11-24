@@ -1,4 +1,4 @@
-# pyang
+# pyang-vscode
 
 YANG Language Support using [pyang][pyang].
 
@@ -88,6 +88,13 @@ For issues pertaining to the language server, please refer to documentation for
 
 ## Release Notes
 
+### 0.7.0
+
+* Added YANG file template snippets for module and submodule
+* Added Markdown code fenced syntax highlighting for `yang` and `yangtree`
+* Updated keybinding for `pyang: Generate YANG Tree Diagram` to `Alt+Y T`
+* Updated keybinding for `pyang: Generate PlantUML Diagram` to `Alt+Y U`
+
 ### 0.6.0
 
 * Added menu items in editor context to generate PlantUML and YANG Tree Diagrams
@@ -95,6 +102,7 @@ For issues pertaining to the language server, please refer to documentation for
   Requires latest version of pyang with LSP support.
 * Improved syntax highlighting of YANG Tree Diagrams
 * Added status bar item `pyang` for editors which are served by the extension.
+* Associated `.yang.tree` extension with YANG Tree Diagram
 
 ### 0.5.0
 

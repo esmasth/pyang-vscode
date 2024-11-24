@@ -1,0 +1,28 @@
+{
+    "fileTypes": [],
+    "injectionSelector": "L:markup.fenced_code.block.markdown",
+    "patterns": [
+        {
+            "include": "#yang-code-block"
+        }
+    ],
+    "repository": {
+        "yang-code-block": {
+            "begin": "yang(\\s+[^`~]*)?$",
+            "end": "(^|\\G)(?=\\s*[`~]{3,}\\s*$)",
+            "patterns": [
+                {
+                    "begin": "(^|\\G)(\\s*)(.*)",
+                    "while": "(^|\\G)(?!\\s*([`~]{3,})\\s*$)",
+                    "contentName": "meta.embedded.block.yang",
+                    "patterns": [
+                        {
+                            "include": "source.yang"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "scopeName": "markdown.yang.codeblock"
+}

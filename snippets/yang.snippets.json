@@ -1,0 +1,57 @@
+{
+    "YANG module": {
+        "prefix": "module",
+        "isFileTemplate": true,
+        "body": [
+            "module ${1:${TM_FILENAME_BASE:org-mod}} {",
+            "${2:  yang-version 1.1;\n}  namespace \"urn:${3:ns}:${1}\";",
+            "  prefix ${4:prfx};",
+            "",
+            "  organization",
+            "    \"${5:organization}\";",
+            "  contact",
+            "    \"${6:contact}\";",
+            "  description",
+            "    \"${7:module description}\";",
+            "${8:  reference\n    \"${9:module reference}\";\n}",
+            "  revision ${CURRENT_YEAR:1970}-${CURRENT_MONTH:01}-${CURRENT_DATE:01} {",
+            "    description",
+            "      \"${10:revision description}\";",
+            "${11:    reference\n      \"${12:revision reference}\";\n}  }",
+            "",
+            "  $0",
+            "}",
+            ""
+        ],
+        "description": "YANG module template"
+    },
+    "YANG submodule": {
+        "prefix": "submodule",
+        "isFileTemplate": true,
+        "body": [
+            "submodule ${1:${TM_FILENAME_BASE:org-submod}} {",
+            "${2:  yang-version 1.1;\n}  namespace \"urn:${3:ns}:${1}\";",
+            "  prefix ${4:prfx};",
+            "  belongs-to ${5:including-module};",
+            "",
+            "  organization",
+            "    \"${6:organization}\";",
+            "  contact",
+            "    \"${7:contact}\";",
+            "  description",
+            "    \"${8:module description}\";",
+            "${9:  reference\n    \"${10:submodule reference}\";\n}",
+            "",
+            "  revision ${CURRENT_YEAR:1970}-${CURRENT_MONTH:01}-${CURRENT_DATE:01} {",
+            "    description",
+            "      \"${11:revision description}\";",
+            "${12:    reference\n      \"${13:revision reference}\";\n}",
+            "  }",
+            "",
+            "  $0",
+            "}",
+            ""
+        ],
+        "description": "YANG submodule template"
+    }
+}

@@ -12,6 +12,7 @@ import {
     Position,
     Location,
 } from 'vscode-languageclient/node';
+import type MarkdownIt from 'markdown-it';
 
 let client: LanguageClient;
 const restartCmd = 'pyang.client.restart'
@@ -136,6 +137,16 @@ export function activate(context: vscode.ExtensionContext) {
                 locations.map(client.protocol2CodeConverter.asLocation));
         }
     ));
+
+    return {
+        extendMarkdownIt(mdi: MarkdownIt) {
+            return mdi.use(require('markdown-it-highlightjs'), {
+                register: {
+                    yang: require('./highlightjs-yang')
+                }
+            });
+        }
+    };
 }
 
 export function deactivate(): Thenable<void> | undefined {
@@ -148,6 +159,7 @@ export function deactivate(): Thenable<void> | undefined {
 async function updateStatusBarItem(): Promise<void> {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
+        statusBarItem.hide();
         return;
     }
     const langId = activeEditor.document.languageId;
