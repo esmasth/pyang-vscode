@@ -37,6 +37,13 @@ The extension requires a `pyang` version installation that supports LSP. At the
 time of writing, only a work in progress `pyang` supports `--lsp --no-env-path`
 arguments, which are used to execute it as an LSP server.
 
+The WIP `pyang` fork supporting LSP can be found [here][pyang-fork], and needs
+to be installed instead of official `pyang` package. Note that all versions of
+the fork are not necessarily compatible with every version of this extension,
+hence latest versions of both should be used, unless advised otherwise.
+
+[pyang-fork]: https://github.com/esmasth/pyang/tree/esmasth/lsp
+
 ## Extension Settings
 
 This extension contributes the following settings:
